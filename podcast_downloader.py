@@ -6,16 +6,6 @@ import argparse
 from urllib.parse import urlparse
 import sys
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-
 class PodcastDownloader:
     def __init__(self):
         self.headers = {
@@ -24,19 +14,19 @@ class PodcastDownloader:
     
     def print_success(self, message):
         """打印成功信息"""
-        print(f"{bcolors.OKGREEN}[✓] {message}{bcolors.ENDC}")
+        print(f"[✓] {message}")
     
     def print_info(self, message):
         """打印信息"""
-        print(f"{bcolors.OKBLUE}[i] {message}{bcolors.ENDC}")
+        print(f"[i] {message}")
     
     def print_warning(self, message):
         """打印警告信息"""
-        print(f"{bcolors.WARNING}[!] {message}{bcolors.ENDC}")
+        print(f"[!] {message}")
     
     def print_error(self, message):
         """打印错误信息"""
-        print(f"{bcolors.FAIL}[✗] {message}{bcolors.ENDC}")
+        print(f"[✗] {message}")
     
     def extract_audio_url(self, url):
         """从播客链接中提取音频文件URL"""
@@ -152,16 +142,16 @@ def main():
     args = parser.parse_args()
     
     # 打印欢迎信息
-    print(f"{bcolors.HEADER}{bcolors.BOLD}播客音频提取工具{bcolors.ENDC}")
-    print(f"{bcolors.HEADER}==================={bcolors.ENDC}")
+    print("播客音频提取工具")
+    print("===================")
     
     downloader = PodcastDownloader()
     result = downloader.download_from_url(args.url, args.dir, args.output)
     
     if result:
-        print(f"{bcolors.HEADER}{bcolors.BOLD}\n任务完成!{bcolors.ENDC}")
+        print("\n任务完成!")
     else:
-        print(f"{bcolors.FAIL}{bcolors.BOLD}\n任务失败!{bcolors.ENDC}")
+        print("\n任务失败!")
         sys.exit(1)
 
 if __name__ == '__main__':

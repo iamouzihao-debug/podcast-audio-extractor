@@ -6,6 +6,15 @@ import sys
 # 添加当前目录到Python路径
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
+# 确保templates目录存在
+if not os.path.exists('templates'):
+    os.makedirs('templates')
+
+# 将index.html复制到templates目录
+if os.path.exists('index.html'):
+    import shutil
+    shutil.copy('index.html', 'templates/')
+
 from podcast_downloader import PodcastDownloader
 
 app = Flask(__name__)
